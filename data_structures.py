@@ -10,7 +10,7 @@ class Node():
         if(new_nodes==None):
             self.next = None
         else:
-            self.next = new_nodes
+            self.next = next_nodes
 
 
 class M_ary_Node(Node):
@@ -20,16 +20,16 @@ class M_ary_Node(Node):
         else:
             self.name = str(name)
         self.value = new_value
-        if(new_nodes==None):
+        if(next_nodes==None):
             self.next = []
-        elif(new_nodes==1):
+        elif(next_nodes==1):
             self.next = [None]
-        elif(type(new_nodes)==type([1]) and len(new_nodes)==1):
+        elif(type(next_nodes)==type([1]) and len(next_nodes)==1):
             self.next = [new_nodes[0]]
-        elif(type(new_nodes)==type([1,2]) and len(new_nodes)>1):
-            self.next = new_nodes
+        elif(type(next_nodes)==type([1,2]) and len(next_nodes)>1):
+            self.next = next_nodes
         else:
-            self.next = new_nodes
+            self.next = next_nodes
 
 class Binary_Node(Node):
     def __init__(self,name,new_value,new_left,new_right):
