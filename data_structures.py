@@ -1,4 +1,4 @@
-import threading
+import threading.Lock
 
 class Node():
     def __init__(self,name,new_value,next_nodes):
@@ -7,7 +7,7 @@ class Node():
         else:
             self.name = str(name)
         self.value = new_value
-        if(new_nodes==None):
+        if(next_nodes==None):
             self.next = None
         else:
             self.next = next_nodes
@@ -25,7 +25,7 @@ class M_ary_Node(Node):
         elif(next_nodes==1):
             self.next = [None]
         elif(type(next_nodes)==type([1]) and len(next_nodes)==1):
-            self.next = [new_nodes[0]]
+            self.next = [next_nodes[0]]
         elif(type(next_nodes)==type([1,2]) and len(next_nodes)>1):
             self.next = next_nodes
         else:
@@ -38,7 +38,7 @@ class Binary_Node(Node):
         else:
             self.name = str(name)
         self.value = new_value
-        if(left==None and right==None):
+        if(self.left==None and self.right==None):
             self.left = None
             self.right = None
         else:
@@ -47,6 +47,9 @@ class Binary_Node(Node):
 
 
 class Singly_linked_list(Node):
+
+    lock = Lock()
+    
     def __append__(self,new_nodes):
         self.next = new_nodes
         return self.next
@@ -62,7 +65,7 @@ class Singly_linked_list(Node):
             return
 
     def __push__(self,nodes):
-        __append__(nodes)
+        self.__append__(nodes)
         return
 
     def __iterate__(self,head):
@@ -79,6 +82,9 @@ class Singly_linked_list(Node):
                     
 
 class Binary_Tree(Binary_Node):
+
+    lock = Lock()
+    
     def __append_left__(self,head,new_left):
         head.left = new_left
         return head.left
